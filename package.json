@@ -5,7 +5,9 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon app.js",
+    "start": "node.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,9 @@
   },
   "homepage": "https://github.com/JustinLBurns/JBurns_MACT6340_Project#readme",
   "dependencies": {
-    "express": "^4.21.2",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.9"
   }
 }
