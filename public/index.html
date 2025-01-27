@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+    <title>Justin Burns NFT Mint</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Contrail+One&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    
+    <style>
+        /* CSS styles */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Contrail One', sans-serif;
+            overflow: hidden;
+        }
+        nav {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+        }
+        nav a {
+            color: black;
+            font-size: 24px;
+            margin: 0 30px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: red;
+        }
+        .centered-text {
+            position: absolute;
+            z-index: 2;
+            color: white;
+            font-size: 60px;
+            text-align: center;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Ensure canvas is behind text and nav */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#films">Films</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+
+    <div class="centered-text">Justin Burns</div>
+
+    <script>
+        let img;
+
+        function preload() {
+            img = loadImage('https://images.squarespace-cdn.com/content/v1/57a64231b8a79b2fec260383/1719338118160-CFQEBSOHGDV7O0OYN8DK/image-asset.jpeg?format=2500w');
+        }
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            img.resize(windowWidth, windowHeight); // Resize the image to fit the canvas
+            noLoop(); // Stop continuous looping
+            drawScene(); // Draw initial scene
+        }
+
+        function drawScene() {
+            clear(); // Clear the canvas to avoid stacking
+            image(img, 0, 0); // Draw the image as the base layer
+            applyGrain(); // Add grain/static effect
+        }
+
+        function glitchEffect() {
+            let numGlitches = int(random(5, 15)); // Random number of glitches
+
+            for (let i = 0; i < numGlitches; i++) {
+                let sliceHeight = int(random(5, 30)); // Random height of the glitch slice
+                let y = int(random(height)); // Random y position for the slice
+                let glitchOffset = int(random(-50, 50)); // Random horizontal offset for glitch
+
+                // Extract the slice from the image
+                let slice = img.get(0, y, width, sliceHeight);
+
+                // Redraw the slice at a random horizontal offset
+                image(slice, glitchOffset, y);
+            }
+        }
+
+        function applyGrain() {
+            loadPixels();
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                    let index = (x + y * width) * 4; // Pixel Format 
+                    let grain = random(-40, 50); // Random noise value
+                    pixels[index] += grain; // Red noise channel  
+                    pixels[index + 1] += grain; // Green noise channel 
+                    pixels[index + 2] += grain; // Blue noise channel 
+                }
+            }
+            updatePixels(); // Apply the pixel changes to the canvas
+        }
+
+        function mouseMoved() {
+            drawScene(); // Redraw the base image
+            glitchEffect(); // Apply glitch effects
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+            img.resize(windowWidth, windowHeight); // Resize the image when the window size changes
+            drawScene(); // Redraw the image on resize
+        }
+    </script>
+</body>
+</html>
