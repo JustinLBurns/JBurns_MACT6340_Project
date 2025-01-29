@@ -2,7 +2,7 @@
 
 (() => {
 
-document.querySelector("testButton").addEventListener("click", handleClick);
+document.querySelector("#contact-form-button").addEventListener("click", handleClick);
 
 function handleClick() {
     console.log("Thank you for clicking.")
