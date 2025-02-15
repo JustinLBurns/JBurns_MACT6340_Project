@@ -74,4 +74,3 @@ window.onload = function () {
         drawScene();
     }
 };
-

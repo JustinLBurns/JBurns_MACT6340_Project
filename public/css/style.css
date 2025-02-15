@@ -1,8 +1,52 @@
-html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
+/* Apply background image to entire page */
+body {
+  background-image: url('https://res.cloudinary.com/dcntnh737/image/upload/v1726781624/Screenshot_2024-09-19_at_4.32.10_PM_k984ro.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Contrail One', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-    background-color: darkgreen;
-  }
+/* Centered form container with transparent background */
+.container {
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  background: rgba(128, 128, 128, 0.7); /* Transparent grey */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Form styling */
+form .form-control {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Submit button styling */
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
