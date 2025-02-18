@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000; // Use PORT from .env or fallback to 3000
 
 app.use(express.static("public")); // Serve static files
 app.use(express.urlencoded({ extended: true })); // Body parsing for forms
+app.use(express.json());
 
 app.post("/mail", (req, res) => {
   console.log("Mail button clicked");
@@ -16,9 +17,7 @@ app.post("/mail", (req, res) => {
 });
 
 app.listen(port, () => {
-  if (process.env.NODE_ENV !== "production") {
-    console.log("Sensitive info (debug mode):", process.env.SENSITIVE_INFO);
-  }
+  console.log(process.env.SENSITIVE_INFO);
   console.log(`Example app listening on port ${port}`);
 });
 
