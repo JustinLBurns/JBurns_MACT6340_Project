@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <meta name="author" content="Justin L Burns">
-    <meta name="description" content="A page to contact artist.">
+    <meta name="description" content="A page to contact the artist.">
     <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
 
     <!-- Bootstrap CSS -->
@@ -16,28 +16,67 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        /* Home button styling */
+        .btn-home {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-home:hover {
+            background-color: red;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Contact</h1>
-        <a href="index.html" class="home-button">Home</a>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Contact Me</h1>
 
-        <form action="/mail" method="post">
+        <!-- Contact Form -->
+        <form id="contact-form">
+            <!-- Name -->
             <div class="mb-3">
                 <label for="name" class="form-label">Name:</label>
-                <input type="text" id="name" name="user_name" class="form-control">
+                <input type="text" id="name" name="name" class="form-control" required>
             </div>
+
+            <!-- Email -->
             <div class="mb-3">
-                <label for="mail" class="form-label">Email:</label>
-                <input type="email" id="mail" name="user_email" class="form-control">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
             </div>
+
+            <!-- Subject -->
             <div class="mb-3">
-                <label for="msg" class="form-label">Message:</label>
-                <textarea id="msg" name="user_message" class="form-control" rows="4"></textarea>
+                <label for="subject" class="form-label">Subject:</label>
+                <input type="text" id="subject" name="subject" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">Send your message</button>
+
+            <!-- Message -->
+            <div class="mb-3">
+                <label for="message" class="form-label">Message:</label>
+                <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100">Send Your Message</button>
+
+            <!-- Status Message -->
+            <p id="status" class="text-center mt-3"></p>
         </form>
+
+        <!-- Home Button at Bottom -->
+        <div class="text-center mt-4">
+            <a href="index.html" class="btn btn-home">Home</a>
+        </div>
     </div>
 
     <!-- Scripts -->
