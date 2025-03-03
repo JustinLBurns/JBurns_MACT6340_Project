@@ -7,9 +7,28 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Set EJS as the view engine and define the views directory
+app.set("view engine", "ejs");
+app.set("views", "public/views");
+
+// Middleware to serve static files (CSS, images, JS, etc.)
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Routes
+app.get("/", (req, res) => {
+    res.render("index"); // Fixed: Correct EJS file rendering
+});
+
+app.get("/about", (req, res) => {
+    res.render("about");
+});
+
+app.get("/contact", (req, res) => {
+    res.render("contact");
+});
+
 
 // Route to send emails
 app.post("/mail", async (req, res) => {
@@ -41,7 +60,6 @@ app.post("/mail", async (req, res) => {
         };
 
         await transporter.sendMail(mailOptions);
-
         res.json({ message: "Email sent successfully!" });
     } catch (error) {
         console.error("Error sending email:", error);
@@ -49,8 +67,10 @@ app.post("/mail", async (req, res) => {
     }
 });
 
+// Start the server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
 
 

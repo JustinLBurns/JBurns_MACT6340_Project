@@ -26,6 +26,7 @@
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
         .photo img {
             width: 200px;
@@ -35,6 +36,19 @@
         h1 {
             font-size: 36px;
             font-weight: bold;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .content-box {
+            flex: 1;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 10px;
+            min-width: 300px; /* Ensures they do not collapse */
         }
     </style>
 </head>
@@ -50,15 +64,15 @@
 
         <h1 class="mt-3">Justin Burns</h1>
 
-        <!-- Biography and About The Art Sections -->
+        <!-- Biography and About The Art Sections (Fixed Layout) -->
         <div class="row mt-4">
-            <div class="col-md-6 p-3 bg-light rounded shadow">
+            <div class="col-md-6 content-box">
                 <h2>Biography</h2>
                 <p>
                     Justin Burns is an artist, educator, and creative technology student whose work focuses on weathered and abandoned spaces...
                 </p>
             </div>
-            <div class="col-md-6 p-3 bg-light rounded shadow">
+            <div class="col-md-6 content-box">
                 <h2>About The Art</h2>
                 <p>
                     His paintings are inspired by the remnants of his family’s 100-year-old farm in Kopperl, TX, exploring the stories of the past...
@@ -66,15 +80,16 @@
             </div>
         </div>
 
-        <!-- Home Button -->
+        <!-- Home Button (Fixed Navigation) -->
         <div class="text-center mt-3">
-            <a href="index.html" class="btn btn-dark btn-lg">Home</a>
+            <a href="/" class="btn btn-dark btn-lg">Home</a>
         </div>
 
     </div>
 
-    <!-- Bootstrap JS ) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
+
