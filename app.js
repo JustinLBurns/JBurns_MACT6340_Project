@@ -18,17 +18,16 @@ app.use(express.json());
 
 // Routes
 app.get("/", (req, res) => {
-    res.render("index"); // Fixed: Correct EJS file rendering
+    res.render("index", { page: "home" }); // ✅ Pass 'page' variable
 });
 
 app.get("/about", (req, res) => {
-    res.render("about");
+    res.render("about", { page: "about" });
 });
 
 app.get("/contact", (req, res) => {
-    res.render("contact");
+    res.render("contact", { page: "contact" });
 });
-
 
 // Route to send emails
 app.post("/mail", async (req, res) => {
@@ -45,7 +44,7 @@ app.post("/mail", async (req, res) => {
         let transporter = nodemailer.createTransport({
             host: process.env.GMAIL_HOST,
             port: process.env.MAIL_PORT,
-            secure: process.env.MAIL_SECURE === "true",
+            secure: process.env.MAIL_SECURE === "true", // Ensure it's a boolean comparison
             auth: {
                 user: process.env.GMAIL_USERNAME,
                 pass: process.env.GMAIL_PASSWORD,
@@ -56,7 +55,7 @@ app.post("/mail", async (req, res) => {
             from: process.env.MESSAGE_FROM,
             to: process.env.MESSAGE_TO,
             subject: `Contact Form: ${subject}`,
-            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`, // ✅ FIXED: Correctly assigning text
         };
 
         await transporter.sendMail(mailOptions);
@@ -71,6 +70,3 @@ app.post("/mail", async (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
-
-
-
