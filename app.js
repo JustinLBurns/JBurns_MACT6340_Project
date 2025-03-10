@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 app.set("view engine", "ejs");
 app.set("views", "public/views");
 
+
 // Middleware to serve static files (CSS, images, JS, etc.)
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -18,12 +19,20 @@ app.use(express.json());
 
 // Routes
 app.get("/", (req, res) => {
-    res.render("index", { page: "home" }); // ✅ Pass 'page' variable
+    res.render("index", { page: "home" });
 });
 
 app.get("/about", (req, res) => {
     res.render("about", { page: "about" });
 });
+
+app.get('/projects', (req, res) => {
+    res.render('projects');
+});
+
+
+
+
 
 app.get("/contact", (req, res) => {
     res.render("contact", { page: "contact" });
@@ -55,7 +64,7 @@ app.post("/mail", async (req, res) => {
             from: process.env.MESSAGE_FROM,
             to: process.env.MESSAGE_TO,
             subject: `Contact Form: ${subject}`,
-            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`, // ✅ FIXED: Correctly assigning text
+            text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         };
 
         await transporter.sendMail(mailOptions);
